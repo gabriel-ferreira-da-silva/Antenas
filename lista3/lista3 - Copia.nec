@@ -12,7 +12,5 @@ LD	5	1	0	0	58000000	'Wire conductivity
 GN	-1
 EK
 EX	0	1	1	0	1	0	0	'Voltage source (1+j0) at wire 1 segment 5.
-EX	0	0	0	0	0	0	0
-
 FR	0	0	0	0	300	0
 EN

@@ -6,13 +6,22 @@ CM
 CM 
 CE
 SY len=.4836	'Symbol: Length for WL/2
-GW	1	9	0	0	0	0	0	0.25	.001	'Wire 1, 9 segments, halve wavelength long.
+GW	1	9	0	0	0	0	0	0.25	.0001	'Wire 1, 9 segments, halve wavelength long.
+
+
+GW 2 9 -0.3 0 0 -0.2 0 0 .001
+GW 3 9 -0.2 0 0 -0.1 0 0 .001
+GW 4 9 0 0 0 0.1 0 0 .001
+GW 5 9 0.1 0 0 0.2 0 0 .001
+GW 6 9 0.2 0 0 0.3 0 0 .001
+GW 7 9 0.3 0 0 0.4 0 0 .001
+
+
+
 GE	0
 LD	5	1	0	0	58000000	'Wire conductivity
 GN	-1
 EK
 EX	0	1	1	0	1	0	0	'Voltage source (1+j0) at wire 1 segment 5.
-EX	0	0	0	0	0	0	0
-
 FR	0	0	0	0	300	0
 EN
