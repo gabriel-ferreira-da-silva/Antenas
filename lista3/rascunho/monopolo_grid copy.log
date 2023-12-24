@@ -1,0 +1,6 @@
+monopolo_grid copy.nec wavelength=0.999 mtr.
+
+Error: Wires 3 (tag 3) and 9 (tag 9) are crossing or not connected.
+Error: Wires 4 (tag 4) and 9 (tag 9) are crossing or not connected.
+Error: Wires 6 (tag 6) and 9 (tag 9) are crossing or not connected.
+Error: Wires 7 (tag 7) and 9 (tag 9) are crossing or not connected.
