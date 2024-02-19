@@ -1,0 +1,67 @@
+import random
+
+# Define the fitness function
+def fitness_function(x):
+    return x**2 + 3*x + 4
+
+# Generate initial population
+def generate_population(size, x_min, x_max):
+    population = []
+    for _ in range(size):
+        individual = {'x': random.uniform(x_min, x_max)}
+        population.append(individual)
+    return population
+
+# Evaluate fitness of each individual in the population
+def evaluate_population(population):
+    for individual in population:
+        individual['fitness'] = fitness_function(individual['x'])
+
+# Select parents for crossover (tournament selection)
+def select_parents(population, tournament_size):
+    selected_parents = []
+    for _ in range(2):
+        tournament = random.sample(population, tournament_size)
+        winner = max(tournament, key=lambda x: x['fitness'])
+        selected_parents.append(winner)
+    return selected_parents
+
+# Perform crossover (single point crossover)
+def crossover(parent1, parent2):
+    crossover_point = random.randint(0, 1)
+    child1 = {'x': (parent1['x'] + parent2['x']) / 2}  # Simple averaging as crossover
+    child2 = {'x': parent1['x']} if crossover_point == 0 else {'x': parent2['x']}
+    return child1, child2
+
+# Perform mutation
+def mutate(individual, mutation_rate, x_min, x_max):
+    if random.random() < mutation_rate:
+        individual['x'] += random.uniform(-0.1, 0.1)  # Small random change
+        individual['x'] = max(x_min, min(individual['x'], x_max))  # Ensure within bounds
+
+# Genetic algorithm main function
+def genetic_algorithm(population_size, num_generations, tournament_size, mutation_rate, x_min, x_max):
+    population = generate_population(population_size, x_min, x_max)
+    for generation in range(num_generations):
+        evaluate_population(population)
+        print(f"Generation {generation + 1}: Best Fitness = {max(individual['fitness'] for individual in population)}")
+        new_population = []
+        while len(new_population) < population_size:
+            parent1, parent2 = select_parents(population, tournament_size)
+            child1, child2 = crossover(parent1, parent2)
+            mutate(child1, mutation_rate, x_min, x_max)
+            mutate(child2, mutation_rate, x_min, x_max)
+            new_population.extend([child1, child2])
+        population = new_population
+    best_solution = max(population, key=lambda x: x['fitness'])
+    print("Best solution:", best_solution)
+
+# Example usage
+population_size = 100
+num_generations = 50
+tournament_size = 5
+mutation_rate = 0.1
+x_min = -10
+x_max = 10
+
+genetic_algorithm(population_size, num_generations, tournament_size, mutation_rate, x_min, x_max)
